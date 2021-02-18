@@ -96,15 +96,23 @@ def receiveBlue(cookies):
 
 def receiveCoin(cookies):
     print("\n【收银台收钱】")
-    data = getTemplate(cookies, "smtg_receiveCoin", {"type": 0})["data"]
+    data = getTemplate(cookies, "smtg_receiveCoin", {
+                       "type": 4, "channel": "1"})["data"]
     if data["bizCode"] == 802:
         print(data["bizMsg"])
         return
-    totalGold = data["result"]["totalGold"]
-    print(
-        f"""totalGold:{format(totalGold,",")} (+{format(data["result"]["receivedGold"],",")})""")
-
-
+    result = data["result"]
+    print(result)
+    if result["turnoverProgress"] != 0:
+        print("需要手动开启")
+        return
+    if result["isUpgradeFlag"] and "userUpgradeBlueVos" in result:
+        for i in result["userUpgradeBlueVos"]:
+            data = getTemplate(cookies, "smtg_receiveCoin", {
+                               "type": 5, "channel": "1", "id": i["id"]})["data"]["result"]
+            print(data)
+            
+            
 def upgrade(cookies):
     if flag_upgrade == 0:
         return
@@ -449,14 +457,14 @@ def run():
     for cookies in cookiesList:
         print(f"""[ {cookies["pt_pin"]} ]""")
         receiveCoin(cookies)
-        receiveBlue(cookies)
-        shelfList(cookies)
-        upgrade(cookies)
+        #receiveBlue(cookies)
+        #shelfList(cookies)
+        #upgrade(cookies)
         sign(cookies)
         dailyTask(cookies)
         # manage(cookies)
-        limitTimePro(cookies)
-        pk(cookies)
+        #limitTimePro(cookies)
+        #pk(cookies)
         lottery(cookies)
         exchangeBean_1000(cookies)
         exchangeBean_1(cookies)
