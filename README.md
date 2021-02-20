@@ -26,8 +26,6 @@
 | notification.py                                     | 通知服务       | **必须**                 |
 | jd_farm.py                                          | 东东农场       | 互助                     |
 | jd_pet.py                                           | 东东萌宠       | 互助                     |
-| jd_joy.py                                           | 宠汪汪         |                          |
-| jd_joy_steal.py                                     | 宠汪汪steal    |                          |
 | jd_plantBean.py                                     | 种豆得豆       | 互助                     |
 | jd_superMarket.py                                   | 东东超市       |                          |
 | jd_unfollow.py                                      | 取消订阅       |                          |
