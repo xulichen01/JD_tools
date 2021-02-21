@@ -83,7 +83,7 @@ def serverJ(title, content):
 def bark(title, content):
     """bark服务"""
     bark_token = BARK
-    title = content.replace("#", "")
+    title = title.replace("#", "")
     content = content.replace("#", "")
     if "BARK" in os.environ:
         """
